@@ -40,14 +40,21 @@ function Dashboard() {
 
     return (
         <div>
-            <h2>Dashboard</h2>
-            <p>Wallet Balance: {balance !== null ? `ZMW${balance}` : "Loading..."}</p>
+            <div>
+                <h2>Dashboard</h2>
+                <p>Wallet Balance: {balance !== null ? `ZMW${balance}` : "Loading..."}</p>
 
-            <button onClick={() => navigate("/deposit")}>Deposit</button>
-            <button onClick={() => navigate("/withdraw")}>Withdraw</button>
-            <button onClick={() => navigate("/transfer")}>Transfer</button>
-            <button onClick={handleLogout}>Logout</button>
+                <button onClick={() => navigate("/deposit")}>Deposit</button>
+                <button onClick={() => navigate("/withdraw")}>Withdraw</button>
+                <button onClick={() => navigate("/transfer")}>Transfer</button>
+                <button onClick={() => navigate("/transaction-history")}>Transaction History</button>
+            </div>
+            <div>
+                <button onClick={handleLogout}>Logout</button>
+            </div>
+
         </div>
+
     );
 }
 

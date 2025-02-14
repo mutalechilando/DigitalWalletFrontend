@@ -6,6 +6,7 @@ import Deposit from "./pages/Deposit";
 import Withdraw from "./pages/Withdraw";
 import Transfer from "./pages/Transfer";
 import PrivateRoute from "./components/PrivateRoute"
+import TransactionHistory from "./pages/TransactionHistory.tsx";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/deposit" element={<Deposit />} />
                 <Route path="/withdraw" element={<Withdraw />} />
                 <Route path="/transfer" element={<Transfer />} />
+                <Route path="/transaction-history" element={<TransactionHistory />} />
             </Route>
         </Routes>
     );
