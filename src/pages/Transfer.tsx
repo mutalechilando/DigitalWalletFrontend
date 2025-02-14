@@ -28,23 +28,42 @@ function Transfer() {
     };
 
     return (
-        <div>
-            <h2>Transfer Funds</h2>
-            <input
-                type="number"
-                value={receiverId || ""}
-                onChange={(e) => setReceiverId(Number(e.target.value))}
-                placeholder="Enter Receiver ID"
-            />
-            <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
-                placeholder="Enter Amount"
-            />
-            <button onClick={handleTransfer} disabled={loading}>
-                {loading ? "Processing..." : "Transfer"}
-            </button>
+        <div className="container mt-4">
+            <div className="card shadow-sm p-4">
+                <h2 className="mb-4">Transfer Funds</h2>
+
+                <div className="mb-3">
+                    <label className="form-label">Receiver ID</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        value={receiverId || ""}
+                        onChange={(e) => setReceiverId(Number(e.target.value))}
+                        placeholder="Enter Receiver ID"
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Amount</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        value={amount}
+                        onChange={(e) => setAmount(Number(e.target.value))}
+                        placeholder="Enter Amount"
+                    />
+                </div>
+
+                <button className="btn btn-primary w-100" onClick={handleTransfer} disabled={loading}>
+                    {loading ? (
+                        <>
+                            <span className="spinner-border spinner-border-sm me-2"></span>Processing...
+                        </>
+                    ) : (
+                        "Transfer"
+                    )}
+                </button>
+            </div>
         </div>
     );
 }

@@ -31,17 +31,34 @@ function Deposit() {
     };
 
     return (
-        <div>
-            <h2>Deposit Funds</h2>
-            <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
-                placeholder="Enter amount"
-            />
-            <button onClick={handleDeposit} disabled={loading}>
-                {loading ? "Processing..." : "Deposit"}
-            </button>
+        <div className="container mt-5 d-flex justify-content-center">
+            <div className="card p-4 shadow-sm" style={{maxWidth: "400px", width: "100%"}}>
+                <h2 className="text-center mb-4">Deposit Funds</h2>
+
+                <div className="mb-3">
+                    <label className="form-label">Amount</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="Enter amount"
+                        value={amount}
+                        onChange={(e) => setAmount(Number(e.target.value))}
+                        min="1"
+                        required
+                    />
+                </div>
+
+                <button className="btn btn-success w-100" onClick={handleDeposit} disabled={loading}>
+                    {loading ? (
+                        <>
+                            <span className="spinner-border spinner-border-sm me-2"></span>
+                            Processing...
+                        </>
+                    ) : (
+                        "Deposit"
+                    )}
+                </button>
+            </div>
         </div>
     );
 }

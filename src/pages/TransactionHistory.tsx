@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import API from "../services/api";
 import { useNavigate } from "react-router-dom";
+import API from "../services/api";
 
 interface Transaction {
     transactionId: number;
@@ -28,37 +28,47 @@ function TransactionHistory() {
     }, []);
 
     return (
-        <div>
-            <h2>Transaction History</h2>
-            <button onClick={() => navigate("/dashboard")}>Back to Dashboard</button>
-            <table border={1} width="100%">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Other Party</th>
-                    <th>Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                {transactions.length > 0 ? (
-                    transactions.map((tx) => (
-                        <tr key={tx.transactionId}>
-                            <td>{tx.transactionId}</td>
-                            <td>{tx.type}</td>
-                            <td>${tx.amount}</td>
-                            <td>{tx.otherParty}</td>
-                            <td>{new Date(tx.timestamp).toLocaleString()}</td>
+        <div className="container mt-4">
+            <div className="card shadow-sm p-4">
+                <h2 className="mb-4">Transaction History</h2>
+
+                <button className="btn btn-secondary mb-3" onClick={() => navigate("/dashboard")}>
+                    Back to Dashboard
+                </button>
+
+                <div className="table-responsive">
+                    <table className="table table-striped table-hover">
+                        <thead className="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Other Party</th>
+                            <th>Date</th>
                         </tr>
-                    ))
-                ) : (
-                    <tr>
-                        <td colSpan={5}>No transactions found</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                        {transactions.length > 0 ? (
+                            transactions.map((tx) => (
+                                <tr key={tx.transactionId}>
+                                    <td>{tx.transactionId}</td>
+                                    <td>{tx.type}</td>
+                                    <td>ZMW {tx.amount.toFixed(2)}</td>
+                                    <td>{tx.otherParty}</td>
+                                    <td>{new Date(tx.timestamp).toLocaleString()}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan={5} className="text-center">
+                                    No transactions found
+                                </td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }

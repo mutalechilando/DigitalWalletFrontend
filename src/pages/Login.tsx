@@ -19,11 +19,38 @@ function Login() {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleLogin}>Login</button>
+        <div className="container mt-5 d-flex justify-content-center">
+            <div className="card p-4 shadow-sm" style={{maxWidth: "400px", width: "100%"}}>
+                <h2 className="text-center mb-4">Login</h2>
+
+                <div className="mb-3">
+                    <label className="form-label">Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter your email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+
+                <button className="btn btn-primary w-100" onClick={handleLogin}>
+                    Login
+                </button>
+            </div>
         </div>
     );
 }

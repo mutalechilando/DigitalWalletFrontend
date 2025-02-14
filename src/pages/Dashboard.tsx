@@ -39,20 +39,35 @@ function Dashboard() {
     };
 
     return (
-        <div>
-            <div>
-                <h2>Dashboard</h2>
-                <p>Wallet Balance: {balance !== null ? `ZMW${balance}` : "Loading..."}</p>
+        <div className="container mt-5">
+            <div className="card p-4 shadow-sm">
+                <h2 className="text-center mb-4">Dashboard</h2>
 
-                <button onClick={() => navigate("/deposit")}>Deposit</button>
-                <button onClick={() => navigate("/withdraw")}>Withdraw</button>
-                <button onClick={() => navigate("/transfer")}>Transfer</button>
-                <button onClick={() => navigate("/transaction-history")}>Transaction History</button>
-            </div>
-            <div>
-                <button onClick={handleLogout}>Logout</button>
-            </div>
+                <p className="fs-5 text-center">
+                    Wallet Balance: <strong>ZMW {balance !== null ? balance : "Loading..."}</strong>
+                </p>
 
+                <div className="d-flex flex-wrap justify-content-center gap-3">
+                    <button className="btn btn-primary" onClick={() => navigate("/deposit")}>
+                        Deposit
+                    </button>
+                    <button className="btn btn-success" onClick={() => navigate("/withdraw")}>
+                        Withdraw
+                    </button>
+                    <button className="btn btn-warning" onClick={() => navigate("/transfer")}>
+                        Transfer
+                    </button>
+                    <button className="btn btn-info" onClick={() => navigate("/transaction-history")}>
+                        Transaction History
+                    </button>
+                </div>
+
+                <div className="text-center mt-4">
+                    <button className="btn btn-danger" onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
+            </div>
         </div>
 
     );
