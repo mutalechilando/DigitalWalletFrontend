@@ -1,0 +1,27 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('/images/digiwallet1.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-card {
+    max-width: 420px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.login-text {
+    color: #6c757d; /* Muted text */
+}

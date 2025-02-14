@@ -1,6 +1,7 @@
 import { useState } from "react";
-import API from "../services/api"
 import { useNavigate } from "react-router-dom";
+import API from "../services/api";
+import "../styles/Login.css";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -19,9 +20,12 @@ function Login() {
     };
 
     return (
-        <div className="container mt-5 d-flex justify-content-center">
-            <div className="card p-4 shadow-sm" style={{maxWidth: "400px", width: "100%"}}>
-                <h2 className="text-center mb-4">Login</h2>
+        <div className="login-container">
+            <div className="login-card">
+                <div className="text-center mb-4">
+                    <h2 className="login-title">CoinCrib</h2>
+                    <p className="login-text">Discover Your Digital Wealth</p>
+                </div>
 
                 <div className="mb-3">
                     <label className="form-label">Email</label>
@@ -50,6 +54,15 @@ function Login() {
                 <button className="btn btn-primary w-100" onClick={handleLogin}>
                     Login
                 </button>
+
+                <div className="text-center mt-3">
+                    <p>
+                        Don't have an account?{" "}
+                        <a href="/register" className="text-decoration-none text-primary">
+                            Register here
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     );

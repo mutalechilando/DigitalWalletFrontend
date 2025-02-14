@@ -17,7 +17,7 @@ function Withdraw() {
         setLoading(true);
         try {
             const response = await API.post("/wallet/withdraw", { amount });
-            console.log("Response from backend:", response.data);
+            //console.log("Response from backend:", response.data);
             if (response.status === 200) {
                 alert(`${response.data.message}: ZMW ${amount}`);
                 navigate("/dashboard");

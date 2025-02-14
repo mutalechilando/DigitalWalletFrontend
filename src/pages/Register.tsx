@@ -1,22 +1,33 @@
 import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+import API from "../services/api";
 
 function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            // Simulate registration process
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            alert("Registration successful!");
+            const payload = {
+                id: 0,
+                userName: username,
+                email: email,
+                passwordHash: password,
+            };
+
+            const response = await API.post("/auth/register", payload);
+            console.log("Registration successful:", response.data);
+            alert("Registration successful! Please login.");
+            navigate("/"); // Redirect to login page
         } catch (error) {
             console.error("Registration failed", error);
+            alert("Registration failed. Please try again.");
         }
 
         setLoading(false);
