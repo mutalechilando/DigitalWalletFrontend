@@ -27,6 +27,17 @@ function Dashboard() {
         fetchBalance();
     }, []);
 
+    const handleLogout = async () => {
+        try {
+            await API.post("/auth/logout"); // Call backend logout API
+
+            localStorage.removeItem("token"); // Remove token from storage
+            navigate("/"); // Redirect to login page
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    };
+
     return (
         <div>
             <h2>Dashboard</h2>
@@ -35,6 +46,7 @@ function Dashboard() {
             <button onClick={() => navigate("/deposit")}>Deposit</button>
             <button onClick={() => navigate("/withdraw")}>Withdraw</button>
             <button onClick={() => navigate("/transfer")}>Transfer</button>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     );
 }
