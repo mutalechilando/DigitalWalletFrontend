@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Deposit from "./pages/Deposit";
 import Withdraw from "./pages/Withdraw.tsx";
+import Transfer from "./pages/Transfer.tsx";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/deposit" element={<Deposit />} />
                 <Route path="/withdraw" element={<Withdraw />} />
+                <Route path="/transfer" element={<Transfer />} />
             </Routes>
     );
 }

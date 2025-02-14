@@ -34,6 +34,7 @@ function Dashboard() {
 
             <button onClick={() => navigate("/deposit")}>Deposit</button>
             <button onClick={() => navigate("/withdraw")}>Withdraw</button>
+            <button onClick={() => navigate("/transfer")}>Transfer</button>
         </div>
     );
 }
