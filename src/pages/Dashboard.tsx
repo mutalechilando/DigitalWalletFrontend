@@ -33,6 +33,7 @@ function Dashboard() {
             <p>Wallet Balance: {balance !== null ? `ZMW${balance}` : "Loading..."}</p>
 
             <button onClick={() => navigate("/deposit")}>Deposit</button>
+            <button onClick={() => navigate("/withdraw")}>Withdraw</button>
         </div>
     );
 }
