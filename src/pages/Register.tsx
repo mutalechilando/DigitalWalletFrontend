@@ -24,7 +24,7 @@ function Register() {
 
     const validateForm = () => {
         let formIsValid = true;
-        let errorMessages = {
+        const errorMessages = {
             username: "",
             email: "",
             password: "",
