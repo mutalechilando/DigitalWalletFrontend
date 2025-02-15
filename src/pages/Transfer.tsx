@@ -3,20 +3,20 @@ import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 
 function Transfer() {
-    const [receiverId, setReceiverId] = useState<number | null>(null);
+    const [receiver, setReceiver] = useState<string>(""); // Changed from receiverId to receiver (username or email)
     const [amount, setAmount] = useState<number>(0);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleTransfer = async () => {
-        if (!receiverId || amount <= 0) {
-            alert("Please enter a valid receiver ID and amount.");
+        if (!receiver.trim() || amount <= 0) {
+            alert("Please enter a valid receiver (email or username) and amount.");
             return;
         }
 
         setLoading(true);
         try {
-            const response = await API.post("/wallet/transfer", { receiverId, amount });
+            const response = await API.post("/wallet/transfer", { receiver, amount });
             alert(response.data.message); // Show success message
             navigate("/dashboard"); // Redirect to Dashboard after success
         } catch (error) {
@@ -33,13 +33,13 @@ function Transfer() {
                 <h2 className="mb-4">Transfer Funds</h2>
 
                 <div className="mb-3">
-                    <label className="form-label">Receiver ID</label>
+                    <label className="form-label">Receiver (Email or Username)</label>
                     <input
-                        type="number"
+                        type="text"
                         className="form-control"
-                        value={receiverId || ""}
-                        onChange={(e) => setReceiverId(Number(e.target.value))}
-                        placeholder="Enter Receiver ID"
+                        value={receiver}
+                        onChange={(e) => setReceiver(e.target.value)}
+                        placeholder="Enter Receiver Email or Username"
                     />
                 </div>
 

@@ -2,10 +2,29 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 import {useNavigate} from "react-router-dom";
 
+interface User {
+    username: string;
+    email: string;
+}
+
 
 function Dashboard() {
     const [balance, setBalance] = useState<number | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await API.get("/users/me");
+                setUser(response.data);
+            } catch (error) {
+                console.error("Error fetching user data", error);
+            }
+        };
+
+        fetchUser();
+    }, []);
 
     useEffect(() => {
         const fetchBalance = async () => {
@@ -42,6 +61,7 @@ function Dashboard() {
         <div className="container mt-5">
             <div className="card p-4 shadow-sm">
                 <h2 className="text-center mb-4">Dashboard</h2>
+                <h4>Hello, {user ? `${user.username} (${user.email})` : "Loading..."}</h4>
 
                 <p className="fs-5 text-center">
                     Wallet Balance: <strong>ZMW {balance !== null ? balance : "Loading..."}</strong>

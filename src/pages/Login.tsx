@@ -11,8 +11,9 @@ function Login() {
     const handleLogin = async () => {
         try {
             const response = await API.post("/auth/login", { email, password });
-            localStorage.setItem("token", response.data.token); // Store token
-            navigate("/dashboard"); // Redirect after login
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user info
+            navigate("/dashboard");
         } catch (error) {
             console.error("Login failed", error);
             alert("Invalid credentials");

@@ -7,7 +7,8 @@ interface Transaction {
     amount: number;
     timestamp: string;
     type: string;
-    otherParty: number;
+    otherPartyUsername: string;
+    otherPartyEmail: string;
 }
 
 function TransactionHistory() {
@@ -54,7 +55,9 @@ function TransactionHistory() {
                                     <td>{tx.transactionId}</td>
                                     <td>{tx.type}</td>
                                     <td>ZMW {tx.amount.toFixed(2)}</td>
-                                    <td>{tx.otherParty}</td>
+                                    <td>
+                                        {tx.otherPartyUsername} ({tx.otherPartyEmail})
+                                    </td>
                                     <td>{new Date(tx.timestamp).toLocaleString()}</td>
                                 </tr>
                             ))
