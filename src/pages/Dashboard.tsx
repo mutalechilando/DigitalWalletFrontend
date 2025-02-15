@@ -16,8 +16,13 @@ function Dashboard() {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await API.get("/users/me");
-                setUser(response.data);
+                const response = await API.get("/wallet/me");
+                if (response.data) {
+                    setUser(response.data);
+                }
+                else {
+                    console.error("Unexpected response format:", response);
+                }
             } catch (error) {
                 console.error("Error fetching user data", error);
             }
@@ -60,11 +65,11 @@ function Dashboard() {
     return (
         <div className="container mt-5">
             <div className="card p-4 shadow-sm">
-                <h2 className="text-center mb-4">Dashboard</h2>
-                <h4>Hello, {user ? `${user.username} (${user.email})` : "Loading..."}</h4>
+                <h2 className="text-center mb-4">Hello {user ? `${user.username}` : "Loading..."}</h2>
+                <h6 className="text-center"><i>Welcome to your Digital Wallet</i></h6>
 
                 <p className="fs-5 text-center">
-                    Wallet Balance: <strong>ZMW {balance !== null ? balance : "Loading..."}</strong>
+                    Your Wallet Balance is <strong>ZMW {balance !== null ? balance : "Loading..."}</strong>
                 </p>
 
                 <div className="d-flex flex-wrap justify-content-center gap-3">
