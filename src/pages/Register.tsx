@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import API from "../services/api";
 
 function Register() {
@@ -91,7 +91,7 @@ function Register() {
 
     return (
         <div className="container mt-5 d-flex justify-content-center">
-            <div className="card p-4 shadow-sm" style={{ maxWidth: "400px", width: "100%" }}>
+            <div className="card p-4 shadow-sm" style={{maxWidth: "400px", width: "100%"}}>
                 <h2 className="text-center mb-4">Register</h2>
 
                 <form onSubmit={handleSubmit}>
@@ -158,6 +158,13 @@ function Register() {
                         )}
                     </button>
                 </form>
+
+                <div className="text-center mt-3">
+                    <p>
+                        Already have an account?{" "}
+                        <Link to="/">Login here</Link>
+                    </p>
+                </div>
             </div>
         </div>
     );
