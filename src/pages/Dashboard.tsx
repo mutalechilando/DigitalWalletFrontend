@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import {useNavigate} from "react-router-dom";
+import "../App.css";
 
 interface User {
     username: string;
@@ -63,10 +64,10 @@ function Dashboard() {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 log-container">
             <div className="card p-4 shadow-sm">
                 <h2 className="text-center mb-4">Hello {user ? `${user.username}` : "Loading..."}</h2>
-                <h6 className="text-center"><i>Welcome to your Digital Wallet</i></h6>
+                <h6 className="text-center blinking-text"><i>Welcome to your Digital Wallet</i></h6>
 
                 <p className="fs-5 text-center">
                     Your Wallet Balance is <strong>ZMW {balance !== null ? balance : "Loading..."}</strong>

@@ -1,0 +1,45 @@
+/* Register.css */
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f7fc;
+    height: 100vh;
+}
+
+.register-card {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-control {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.invalid-feedback {
+    color: red;
+}
+
+.btn-primary {
+    border-radius: 8px;
+    padding: 12px 0;
+    background-color: #4b77be;
+    border-color: #4b77be;
+}
+
+.link {
+    text-decoration: none;
+    color: #4b77be;
+}

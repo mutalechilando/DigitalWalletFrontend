@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import "../App.css"
 
 function Transfer() {
     const [receiver, setReceiver] = useState<string>(""); // Changed from receiverId to receiver (username or email)
@@ -28,8 +29,8 @@ function Transfer() {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="card shadow-sm p-4">
+        <div className="container mt-5 d-flex justify-content-center">
+            <div className="card p-4 shadow-sm" style={{maxWidth: "400px", width: "100%"}}>
                 <h2 className="mb-4">Transfer Funds</h2>
 
                 <div className="mb-3">
@@ -63,6 +64,13 @@ function Transfer() {
                         "Transfer"
                     )}
                 </button>
+
+                <div className="text-center mt-4">
+                    <button className="btn btn-secondary mb-3" onClick={() => navigate("/dashboard")}>
+                        Back to Dashboard
+                    </button>
+                </div>
+
             </div>
         </div>
     );

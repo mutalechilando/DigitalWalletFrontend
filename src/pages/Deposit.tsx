@@ -58,6 +58,13 @@ function Deposit() {
                         "Deposit"
                     )}
                 </button>
+
+                <div className="text-center mt-4">
+                    <button className="btn btn-secondary mb-3" onClick={() => navigate("/dashboard")}>
+                        Back to Dashboard
+                    </button>
+                </div>
+
             </div>
         </div>
     );

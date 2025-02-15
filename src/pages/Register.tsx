@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
+import "../styles/Register.css";
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -90,9 +91,9 @@ function Register() {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center" style={{ backgroundColor: "#f4f7fc", height: "100vh" }}>
-            <div className="card shadow-lg p-4" style={{ maxWidth: "400px", width: "100%", borderRadius: "12px", backgroundColor: "#ffffff" }}>
-                <h2 className="text-center mb-4" style={{ color: "#333" }}>Register</h2>
+        <div className="register-container">
+            <div className="register-card">
+                <h2 className="register-header">Register</h2>
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -104,10 +105,6 @@ function Register() {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            style={{
-                                borderRadius: "8px",
-                                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-                            }}
                         />
                         {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                     </div>
@@ -121,10 +118,6 @@ function Register() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            style={{
-                                borderRadius: "8px",
-                                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-                            }}
                         />
                         {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                     </div>
@@ -138,10 +131,6 @@ function Register() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            style={{
-                                borderRadius: "8px",
-                                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-                            }}
                         />
                         {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                     </div>
@@ -155,10 +144,6 @@ function Register() {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
-                            style={{
-                                borderRadius: "8px",
-                                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-                            }}
                         />
                         {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
                     </div>
@@ -167,12 +152,6 @@ function Register() {
                         type="submit"
                         className="btn btn-primary w-100"
                         disabled={loading}
-                        style={{
-                            borderRadius: "8px",
-                            padding: "12px 0",
-                            backgroundColor: "#4b77be",
-                            borderColor: "#4b77be"
-                        }}
                     >
                         {loading ? (
                             <>
@@ -188,7 +167,7 @@ function Register() {
                 <div className="text-center mt-3">
                     <p>
                         Already have an account?{" "}
-                        <Link to="/" style={{ textDecoration: "none", color: "#4b77be" }}>Login here</Link>
+                        <Link to="/" className="link">Login here</Link>
                     </p>
                 </div>
             </div>

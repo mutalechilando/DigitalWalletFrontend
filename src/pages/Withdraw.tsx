@@ -31,8 +31,8 @@ function Withdraw() {
     };
 
     return (
-        <div className="container mt-4">
-            <div className="card shadow-sm p-4">
+        <div className="container mt-5 d-flex justify-content-center">
+            <div className="card p-4 shadow-sm" style={{maxWidth: "400px", width: "100%"}}>
                 <h2 className="mb-4">Withdraw Funds</h2>
 
                 <div className="mb-3">
@@ -55,6 +55,13 @@ function Withdraw() {
                         "Withdraw"
                     )}
                 </button>
+
+                <div className="text-center mt-4">
+                    <button className="btn btn-secondary mb-3" onClick={() => navigate("/dashboard")}>
+                        Back to Dashboard
+                    </button>
+                </div>
+
             </div>
         </div>
     );
