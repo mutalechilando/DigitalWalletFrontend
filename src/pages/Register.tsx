@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/Register.css";
+import Swal from "sweetalert2";
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -80,11 +81,21 @@ function Register() {
 
             const response = await API.post("/auth/register", payload);
             console.log("Registration successful:", response.data);
-            alert("Registration successful! Please login.");
+            await Swal.fire({
+                title: "Success!",
+                text: `Registration successful! Please login.`,
+                icon: "success",
+                confirmButtonColor: "#4CAF50",
+            });
             navigate("/"); // Redirect to login page
         } catch (error) {
             console.error("Registration failed", error);
-            alert("Registration failed. Please try again.");
+            await Swal.fire({
+                title: "Registration failed",
+                text: "Registration failed. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
         }
 
         setLoading(false);

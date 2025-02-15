@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../App.css"
+import Swal from "sweetalert2";
 
 function Transfer() {
     const [receiver, setReceiver] = useState<string>(""); // Changed from receiverId to receiver (username or email)
@@ -11,18 +12,36 @@ function Transfer() {
 
     const handleTransfer = async () => {
         if (!receiver.trim() || amount <= 0) {
-            alert("Please enter a valid receiver (email or username) and amount.");
+            await Swal.fire({
+                title: "Transfer failed",
+                text: "Please enter a valid receiver (email or username) and amount.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
             return;
         }
 
         setLoading(true);
         try {
             const response = await API.post("/wallet/transfer", { receiver, amount });
-            alert(response.data.message); // Show success message
-            navigate("/dashboard"); // Redirect to Dashboard after success
+
+            if (response.status === 200) {
+                await Swal.fire({
+                    title: "Success!",
+                    text: `${response.data.message}: ZMW ${amount}`,
+                    icon: "success",
+                    confirmButtonColor: "#4CAF50",
+                });
+                navigate("/dashboard"); // Redirect to Dashboard after success
+            }
         } catch (error) {
             console.error("Transfer failed", error);
-            alert("Transfer failed. Please try again.");
+            await Swal.fire({
+                title: "Transfer failed",
+                text: "Transfer failed. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
         } finally {
             setLoading(false);
         }

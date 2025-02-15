@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import API from "../services/api";
+import Swal from "sweetalert2";
 
 function Deposit() {
     const [amount, setAmount] = useState<number>(0);
@@ -9,7 +10,12 @@ function Deposit() {
 
     const handleDeposit = async () => {
         if (amount <= 0) {
-            alert("Please enter a valid amount.");
+            await Swal.fire({
+                title: "Transaction Failed",
+                text: "Deposit failed. Please enter a valid amount.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
             return;
         }
 
@@ -18,13 +24,24 @@ function Deposit() {
             const response = await API.post("/wallet/deposit", { amount });
             //console.log("Response from backend:", response.status);
             if (response.status === 200) {
-                alert(response.data.message + ": ZMW " + amount );
-                //alert("SUCCESS: "+ amount + " deposited")
+                //alert(response.data.message + ": ZMW " + amount );
+                await Swal.fire({
+                    title: "Success!",
+                    text: `Deposit Successful: ZMW ${amount}`,
+                    icon: "success",
+                    confirmButtonColor: "#4CAF50",
+                });
                 navigate("/dashboard");
             }
         } catch (error) {
             console.error("Deposit failed", error);
-            alert("Deposit failed. Please try again.");
+            //alert("Deposit failed. Please try again.");
+            Swal.fire({
+                title: "Transaction Failed",
+                text: "Deposit failed. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
         } finally {
             setLoading(false);
         }

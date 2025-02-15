@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Swal from "sweetalert2";
 
 function Withdraw() {
     const [amount, setAmount] = useState<number>(0);
@@ -10,7 +11,12 @@ function Withdraw() {
 
     const handleWithdraw = async () => {
         if (amount <= 0) {
-            alert("Please enter a valid amount.");
+            await Swal.fire({
+                title: "Withdraw failed",
+                text: "Please enter a valid amount.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
             return;
         }
 
@@ -19,12 +25,23 @@ function Withdraw() {
             const response = await API.post("/wallet/withdraw", { amount });
             //console.log("Response from backend:", response.data);
             if (response.status === 200) {
-                alert(`${response.data.message}: ZMW ${amount}`);
+                await Swal.fire({
+                    title: "Withdraw Success!",
+                    text: `${response.data.message}: ZMW ${amount}`,
+                    icon: "success",
+                    confirmButtonColor: "#4CAF50",
+                });
                 navigate("/dashboard");
             }
         } catch (error) {
             console.error("Withdrawal failed", error);
-            alert("Withdrawal failed. Please try again.");
+            await Swal.fire({
+                title: "Withdraw failed",
+                text: "Withdrawal failed. Please try again.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
+
         } finally {
             setLoading(false);
         }

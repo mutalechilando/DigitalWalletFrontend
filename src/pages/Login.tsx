@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "../styles/Login.css";
+import Swal from "sweetalert2";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -16,7 +17,12 @@ function Login() {
             navigate("/dashboard");
         } catch (error) {
             console.error("Login failed", error);
-            alert("Invalid credentials");
+            await Swal.fire({
+                title: "Login failed",
+                text: "Please enter valid credentials.",
+                icon: "error",
+                confirmButtonColor: "#D32F2F",
+            });
         }
     };
 
