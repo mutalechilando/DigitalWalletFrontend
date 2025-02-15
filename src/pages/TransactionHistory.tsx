@@ -44,7 +44,7 @@ function TransactionHistory() {
                             <th>ID</th>
                             <th>Type</th>
                             <th>Amount</th>
-                            <th>Other Party</th>
+                            <th>Details</th>
                             <th>Date</th>
                         </tr>
                         </thead>
